@@ -7,7 +7,7 @@ To run this aplication:
 * Download or clone the repo
 * Open index.html in your default browser
     * `Jasmine` will already be active in there. You can find it at the bottom of the page.
-* There are a total of 3 suites, 7 specs and 0 failures:
+* There are a total of 4 suites, 7 specs and 0 failures:
     * New Feed Selection (suite)
         * content changes (green)
     * Initial Entries (suite)
