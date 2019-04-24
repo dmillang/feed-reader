@@ -110,11 +110,36 @@ $(function() {
             expect(feed.children.length > 0).toBe(true);
         });
     });
-    
+
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function() {
+        /* Declaration to be used by all function of this suite */
+        const feed = document.querySelector('.feed');
+        /* Variable to save inital feed */
+        const firstFeed = [];
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        /* Load 2 different feeds to check changes in the feed */
+        beforeEach(function(done) {
+            loadFeed(0);
+            /* Move content to firstFeed array to store */
+            Array.from(feed.children).forEach(function(entry) {
+                firstFeed.push(entry.innerText);
+            });
+            loadFeed(1, done);
+        });
+
+        /* Set test to green-check that the feed has changed */
+        it('content changes', function() {
+            /* Create array to compre index values of new array against firstFeed's array */
+            Array.from(feed.children).forEach(function(entry,index) {
+                console.log(entry.innerText, firstFeed[index], entry.innerText === firstFeed[index]);
+                /* Expect that when a new feed is loaded by the loadFeed function that the content actually changes (i.e, it's not the same) */
+                expect(entry.innerText === firstFeed[index]).toBe(false);
+            });
+        });
+    });
 }());
