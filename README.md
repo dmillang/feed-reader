@@ -103,11 +103,27 @@ Note that to 'force' a click we had to use `menu.click()` after defining menu
 const menu = document.querySelector('.menu-icon-link');
 ```
 
-## How will this help my career?
+## Writing the Test Suite for Initial Entries
 
-Writing effective tests requires analyzing multiple aspects of an application including the HTML, CSS and JavaScript - an extremely important skill when changing teams or joining a new company.
+First we set up the `Initial Entries` suite as we've been doing:
+```
+describe('Initial Entries', function() {});
+```
 
-Good tests give you the ability to quickly analyze whether new code breaks an existing feature within your codebase, without having to manually test all of the functionality.
+In order to asynchronously call `loadFeed()`, we need to write it inside a `beforeEach` and with a `done` value inside the function:
+```
+beforeEach(function(done) {
+    loadFeed(0, done);
+});
+```
+
+We then just need to declare an `expect` that checks for the `.feed` length to be bigger than 0:
+```
+it('completes work', function() {
+    const feed = document.querySelector('.feed');
+    expect(feed.children.length > 0).toBe(true);
+});
+```
 
 
 # Development Strategy
