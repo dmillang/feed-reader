@@ -1,14 +1,54 @@
 # Project Overview
 
-In this project you are given a web-based application that reads RSS feeds. The original developer of this application clearly saw the value in testing, they've already included [Jasmine](http://jasmine.github.io/) and even started writing their first test suite! Unfortunately, they decided to move on to start their own company and we're now left with an application with an incomplete test suite. That's where you come in.
+In this project we are given a web-based application that reads RSS feeds. The inital files already include [Jasmine](http://jasmine.github.io/). Our objective is to complete the test suite.
 
 
-## Why this Project?
+## Writing the First Two Tests
 
-Testing is an important part of the development process and many organizations practice a standard of development known as "test-driven development." This is when developers write tests first, before they ever start developing their application. All the tests initially fail and then they start writing application code to make these tests pass.
+The first `TO-DO` we encounter in `/jasmine/spec/feedreader.js` contains two tasks to complete:
+    * TODO: Write a test that loops through each feed.
+    * TODO: Write a test that loops through each feed
 
-Whether you work in an organization that uses test-driven development or in an organization that uses tests to make sure future feature development doesn't break existing features, it's an important skill to have!
+Both of them need to be enclosed inside the same `suite`
+```
+describe('RSS Feeds', function() {});
+```
 
+We can use the provided working test as an example of what we have to do. It reveals we are probably going to use [Jasmine](https://devhints.io/jasmine) terms such as `it`, `expect`, `toBeDefined` and `.not.toBe`.
+
+Given the example working test 
+```
+it('are defined', function() {
+    expect(allFeeds).toBeDefined();
+    expect(allFeeds.length).not.toBe(0);
+});
+```
+
+We can recreate the missing ones like so:
+
+### TODO: Write a test that loops through each feed.
+```
+it('url defined', function() {
+    for(let feed of allFeeds) {
+        expect(feed.url).toBeDefined();
+        expect(feed.url.length).not.toBe(0);
+    }
+});
+```
+
+### TODO: Write a test that loops through each feed
+```
+it('name defined', function() {
+    for(let feed of allFeeds) {
+        expect(feed.name).toBeDefined();
+        expect(feed.name.length).not.toBe(0);
+    }
+});
+```
+
+If we load/refresh our `index.html ` we can see we get 0 failures (a visual representation of it can be seen by the 3 green dots right below the `Jasmine` logo).
+
+We can modify `/js/app.js` to force the tests to fail, and if we then refresh `index.html` it should signal the failures in red.
 
 ## What will I learn?
 
