@@ -50,10 +50,58 @@ If we load/refresh our `index.html ` we can see we get 0 failures (a visual repr
 
 We can modify `/js/app.js` to force the tests to fail, and if we then refresh `index.html` it should signal the failures in red.
 
-## What will I learn?
+## Writing the Test Suite for the Menu Functionality
 
-You will learn how to use Jasmine to write a number of tests against a pre-existing application. These will test the underlying business logic of the application as well as the event handling and DOM manipulation.
+We need to create a set of tests for the menu functionality.
 
+To do so we first need to `describe` the suite. We can copy the structure we saw for the `RSS Feeds` suite. Note that this new suite belongs to the same `$() function(){};` function.
+
+We `describe` it like so:
+```
+describe('The menu', function() {});
+```
+
+We have two TO-DOs to create for this suite:
+    * TODO: Write a test that ensures the menu element is hidden by default.
+    * TODO: Write a test that ensures the menu changes visibility when the menu icon is clicked.
+
+Both are can be solved if we check `/js/app.js` where we find:
+```
+menuIcon.on('click', function() {
+    $('body').toggleClass('menu-hidden');
+});
+```
+We'll also need a way to call the menu icon element. If we inspect it on `index.html` we can see that has a class of
+```
+menu-icon-element
+```
+
+### TODO: Write a test that ensures the menu element is hidden by default.
+```
+it('is hidden', function() {
+    const body = document.querySelector('body');
+    expect(body.classList.contains('menu-hidden')).toBe(true);
+});
+```
+
+### TODO: Write a test that ensures the menu changes visibility when the menu icon is clicked.
+```
+it('toggles on and off', function() {
+const body = document.querySelector('body');
+const menu = document.querySelector('.menu-icon-link');
+
+menu.click();
+expect(body.classList.contains('menu-hidden')).toBe(false);
+
+menu.click();
+expect(body.classList.contains('menu-hidden')).toBe(true);
+});
+```
+
+Note that to 'force' a click we had to use `menu.click()` after defining menu
+```
+const menu = document.querySelector('.menu-icon-link');
+```
 
 ## How will this help my career?
 
